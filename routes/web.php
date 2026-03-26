@@ -1,7 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+// Hiển thị danh sách, Tìm kiếm, Lọc
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+// Thêm mới
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+// Cập nhật (Sửa)
+Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
+// Xóa
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+use App\Http\Controllers\UserController;
+
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
