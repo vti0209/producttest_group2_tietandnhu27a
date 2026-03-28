@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="header-actions">
-        <h1>👥 Quản lý User</h1>
+        <h1>Quản lý User</h1>
         <a href="{{ route('users.create') }}" class="btn-add-user">+ Thêm User</a>
     </div>
 

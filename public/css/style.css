@@ -20,50 +20,87 @@
     }
 }
 
-/* --- Header Auth Styles --- */
+/* --- Modern Header Navigation --- */
+.main-header {
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 10px 40px; /* Tăng padding trái phải để logo không sát mép */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
+    /* Căn giữa các thành phần và đẩy về 2 đầu */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Tinh chỉnh Logo */
+.header-logo a {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo img {
+    height: 40px;       /* Chỉnh độ cao logo nhỏ lại tùy ý */
+    width: auto;        /* Tự động tính chiều rộng theo tỉ lệ */
+    display: block;
+    object-fit: contain;
+}
+
+/* Auth Section Styling - Đẩy sang phải */
 .header-auth {
     display: flex;
     align-items: center;
     gap: 10px;
     font-size: 14px;
-}
-
-.logout-form {
-    display: inline;
-}
-
-/* Thay thế hoàn toàn style cũ của nút Logout */
-.btn-logout {
-    background: none;
-    border: none;
-    color: #007bff;
-    cursor: pointer;
-    text-decoration: underline;
-    padding: 0;
-    font-size: inherit;
-    font-family: inherit;
-}
-
-.btn-logout:hover {
-    color: #0056b3;
-    text-decoration: none;
-}
-
-.auth-link {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.auth-link:hover {
-    text-decoration: underline;
+    color: #636e72;
 }
 
 .user-name {
     font-weight: 600;
-    color: #333;
+    color: #2d3436;
 }
 
+/* Nút Logout nhỏ gọn, bỏ khung nếu muốn giống ảnh */
+.logout-form {
+    display: inline;
+}
+
+.btn-logout {
+    background: #ff7675;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 5px;
+}
+
+.btn-logout:hover {
+    background: #d63031;
+    transform: translateY(-1px);
+}
+
+/* Link Đăng nhập / Đăng ký */
+.auth-link {
+    font-weight: 600;
+    color: #636e72;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.auth-link:hover {
+    color: #0984e3;
+}
+
+/* Dấu gạch đứng phân cách */
+.header-auth {
+    line-height: 1;
+}
 /* --- Footer Styles --- */
 
 .main-footer {
