@@ -8,41 +8,49 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        $users = User::all();
+    public function index() {
+        $users = User::orderBy('id', 'desc')->get();
         return view('users.index', compact('users'));
     }
 
-    public function store(Request $request)
-    {
-        User::create([
-            'username' => $request->username,
-            'fullname' => $request->fullname,
-            'email' => $request->email,
-            'role' => $request->role,
-            'password' => Hash::make($request->password), // Mã hóa mật khẩu
-        ]);
-        return redirect()->back()->with('success', 'Thêm User thành công!');
+    public function create() {
+        return view('users.create');
     }
 
-    public function update(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
-        $data = $request->only(['username', 'fullname', 'email', 'role']);
+    public function store(Request $request) {
+        User::create([
+            'username' => $request->username,
+            'email'    => $request->email,
+            'fullname' => $request->fullname,
+            'role'     => $request->role,
+            'password' => Hash::make($request->password), // Mã hóa mật khẩu
+        ]);
+        return redirect()->route('users.index')->with('success', 'Thêm user thành công!');
+    }
 
-        // Nếu có nhập mật khẩu mới thì mới cập nhật
+    public function edit($id) {
+        $user = User::findOrFail($id);
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(Request $request, $id) {
+        $user = User::findOrFail($id);
+        $data = [
+            'username' => $request->username,
+            'email'    => $request->email,
+            'fullname' => $request->fullname,
+            'role'     => $request->role,
+        ];
+        // Chỉ cập nhật mật khẩu nếu người dùng có nhập mới
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
         }
-
         $user->update($data);
-        return redirect()->back()->with('success', 'Cập nhật User thành công!');
+        return redirect()->route('users.index')->with('success', 'Cập nhật thành công!');
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
         User::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Đã xóa User!');
+        return redirect()->route('users.index')->with('success', 'Đã xóa user!');
     }
 }

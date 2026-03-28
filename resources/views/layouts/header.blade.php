@@ -1,49 +1,24 @@
-<header style="padding: 10px; border-bottom: 1px solid #ccc;">
+<header class="main-header">
+    <div class="header-logo">
+        <a href="{{ url('/') }}">
+            {{-- Gọi file logo từ public/images/logo.png --}}
+            <img src="{{ asset('images/logo.png') }}" alt="Logo">
+        </a>
+    </div>
 
-    <h1>Sản phẩm</h1>
-
-    {{-- Khu vực user --}}
-    <div style="float: right;">
-
-        @auth
-        {{-- Đã đăng nhập --}}
-        Xin chào, <strong>{{ Auth::user()->name }}</strong> |
-
+@auth
+        {{-- Nếu đã đăng nhập thì hiện tên và nút Logout --}}
+        <span>Xin chào, {{ Auth::user()->fullname }}</span> |
         <form action="{{ route('logout') }}" method="POST" style="display: inline;">
             @csrf
-            <button type="submit" style="border:none; background:none; color:blue; cursor:pointer;">
+            <button type="submit" style="background: none; border: none; color: blue; cursor: pointer; text-decoration: underline;">
                 Logout
             </button>
         </form>
+    @else
+        {{-- Nếu chưa đăng nhập thì hiện link Đăng nhập/Đăng ký --}}
+        <a href="{{ route('login') }}">Đăng nhập</a> |
+        <a href="{{ route('register') }}">Đăng ký</a>
+    @endauth
 
-        @else
-        {{-- Chưa đăng nhập --}}
-        <a href="#">Đăng nhập</a> |
-        <a href="#">Đăng ký</a>
-        @endauth
-
-    </div>
-
-    <div style="clear: both;"></div>
-
-    <hr>
-
-    {{-- Thanh tìm kiếm --}}
-    <form method="GET" action="">
-        <input type="text" name="keyword" placeholder="Tìm tên...">
-
-        <select name="category">
-            <option value="">-- Tất cả loại --</option>
-        </select>
-
-        <select name="sort">
-            <option value="">-- Sắp xếp --</option>
-        </select>
-
-        <input type="number" name="price" placeholder="Giá tối đa">
-
-        <button type="submit">Áp dụng</button>
-    </form>
-
-    <br>
 </header>

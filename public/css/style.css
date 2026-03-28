@@ -1,0 +1,106 @@
+/* public/css/style.css */
+
+/* Reset cơ bản */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Kiểu dáng Header */
+.main-header {
+    background-color: #f8f9fa; /* Màu nền nhẹ */
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Logo bên trái, Auth bên phải */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+/* Kiểu dáng Logo */
+.header-logo img {
+    height: 40px; /* Chiều cao logo */
+    width: auto;
+    vertical-align: middle;
+}
+
+/* Kiểu dáng vùng Auth (Login/Register/User info) */
+.header-auth {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Kiểu dáng link Login/Register/Logout */
+.header-auth a {
+    color: #007bff; /* Màu xanh link chuẩn */
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.header-auth a:hover {
+    text-decoration: underline;
+}
+
+/* Kiểu dáng tên user */
+.user-name {
+    font-weight: bold;
+}
+
+
+/* public/css/style.css */
+
+.main-footer {
+    background-color: #1a1a1a; /* Màu tối như trong ảnh */
+    color: #ffffff;
+    padding: 40px 20px 20px;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.social-icons a {
+    color: #ffffff;
+    font-size: 24px;
+    margin-right: 15px;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.social-icons a:hover {
+    opacity: 1;
+}
+
+.contact-info p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    margin-top: 30px;
+    padding-top: 20px;
+    font-size: 13px;
+    color: #888;
+}
+
+.footer-bottom a {
+    color: #ff4d4d;
+    text-decoration: none;
+}

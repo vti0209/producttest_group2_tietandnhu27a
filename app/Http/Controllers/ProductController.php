@@ -8,65 +8,94 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    // 1. Hiển thị danh sách + Tìm kiếm + Lọc
-    public function index(Request $request)
+public function index(Request $request)
     {
-        $categories = Category::all();
-        $query = Product::with('category');
+        // 1. Khởi tạo query từ model Product
+        $query = Product::query();
 
-        // Tìm theo tên
+        // 2. Tìm kiếm theo tên (nếu có nhập)
         if ($request->filled('search')) {
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        // Lọc theo loại
+        // 3. Lọc theo loại sản phẩm (nếu có chọn)
         if ($request->filled('category_id')) {
             $query->where('category_id', $request->category_id);
         }
 
-        // Lọc theo giá tối đa
+        // 4. Lọc theo giá tối đa (nếu có nhập)
         if ($request->filled('max_price')) {
             $query->where('price', '<=', $request->max_price);
         }
 
-        // Sắp xếp
-        if ($request->sort == 'price_asc') $query->orderBy('price', 'asc');
-        elseif ($request->sort == 'price_desc') $query->orderBy('price', 'desc');
+        // 5. Sắp xếp theo giá (nếu có chọn)
+        if ($request->filled('sort')) {
+            if ($request->sort == 'price_asc') {
+                $query->orderBy('price', 'asc');
+            } elseif ($request->sort == 'price_desc') {
+                $query->orderBy('price', 'desc');
+            }
+        } else {
+            // Mặc định sắp xếp theo ID mới nhất
+            $query->orderBy('id', 'desc');
+        }
 
-        $products = $query->get();
+        // 6. Thực hiện lấy dữ liệu
+        $products = $query->with('category')->get();
+        $categories = Category::all();
 
+        // 7. Trả về view
         return view('products.index', compact('products', 'categories'));
     }
+    public function create()
+        {
+            $categories = Category::all();
+            return view('products.create', compact('categories'));
+        }
 
+        public function store(Request $request)
+        {
+            // Lưu dữ liệu vào bảng products
+            Product::create([
+                'name' => $request->name,
+                'price' => $request->price,
+                'category_id' => $request->category_id,
+                'stock' => $request->stock,
+            ]);
 
+            return redirect()->route('products.index')->with('success', 'Đã thêm sản phẩm thành công!');
+        }
 
-    // 3. Cập nhật sản phẩm
-    public function update(Request $request, $id)
+        public function destroy($id)
     {
+        // Tìm sản phẩm theo ID, nếu không thấy sẽ báo lỗi 404
         $product = Product::findOrFail($id);
-        $product->update($request->all());
-        return redirect()->back()->with('success', 'Cập nhật thành công!');
+
+        // Thực hiện xóa
+        $product->delete();
+
+        // Quay lại trang danh sách với thông báo thành công
+        return redirect()->route('products.index')->with('success', 'Đã xóa sản phẩm thành công!');
     }
+    public function edit($id)
+        {
+            $product = Product::findOrFail($id); // Tìm sản phẩm hoặc báo lỗi 404
+            $categories = Category::all(); // Lấy danh sách loại để chọn lại nếu muốn
+            return view('products.edit', compact('product', 'categories'));
+        }
 
-    // 4. Xóa sản phẩm
-    public function destroy($id)
-    {
-        Product::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Đã xóa sản phẩm!');
-    }
+        public function update(Request $request, $id)
+        {
+            $product = Product::findOrFail($id);
 
-    public function store(Request $request)
-{
-    // Validate dữ liệu (Kiểm tra đầu vào)
-    $request->validate([
-        'name' => 'required',
-        'price' => 'required|numeric',
-        'stock' => 'required|integer',
-    ]);
+            // Cập nhật dữ liệu mới từ form
+            $product->update([
+                'name' => $request->name,
+                'price' => $request->price,
+                'category_id' => $request->category_id,
+                'stock' => $request->stock,
+            ]);
 
-    // Gọi Model để lưu vào DB
-    \App\Models\Product::create($request->all());
-
-    return redirect()->back()->with('success', 'Thêm mới thành công!');
-}
+            return redirect()->route('products.index')->with('success', 'Cập nhật sản phẩm thành công!');
+        }
 }

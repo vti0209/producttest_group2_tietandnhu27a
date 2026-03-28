@@ -1,35 +1,31 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Trang web')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- CSS -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>@yield('title', 'Hệ thống Quản lý Nhóm 2')</title>
+
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    @yield('styles')
+    @stack('styles')
 </head>
-
 <body>
 
-    {{-- Header --}}
     @include('layouts.header')
 
-    {{-- Nội dung --}}
-    <div class="container">
+    <main class="container" style="min-height: 80vh; padding: 20px;">
         @yield('content')
-    </div>
+    </main>
 
-    {{-- Footer --}}
     @include('layouts.footer')
 
-    {{-- Script --}}
-    @include('layouts.script')
+    <script src="{{ asset('js/app.js') }}"></script>
 
-    @yield('scripts')
+    @stack('scripts')
 
 </body>
-
 </html>

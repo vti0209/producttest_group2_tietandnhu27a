@@ -1,21 +1,32 @@
 <?php
-
-use Illuminate\Support\Facades\Route;
+// Sanpham routes
 use App\Http\Controllers\ProductController;
-// Hiển thị danh sách, Tìm kiếm, Lọc
+use Illuminate\Support\Facades\Route;
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-// Thêm mới
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
-// Cập nhật (Sửa)
-Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
-// Xóa
 Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+// Route xử lý cập nhật (dùng PUT hoặc PATCH)
+Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
 
-
-
+// User routes
 use App\Http\Controllers\UserController;
+Route::resource('users', UserController::class); // Tạo tất cả route cần thiết cho UserController (index, create, store, show, edit, update, destroy)
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+// Auth routes
+use App\Http\Controllers\AuthController;
+// Guest: Chỉ khách mới vào được
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
+});
+// Auth: Phải đăng nhập mới vào được
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::resource('products', ProductController::class);
+    Route::resource('users', UserController::class);
+});

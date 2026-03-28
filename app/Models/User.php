@@ -10,10 +10,10 @@ class User extends Authenticatable
     // Mở khóa các cột để có thể Thêm/Sửa hàng loạt
     protected $fillable = [
         'username',
-        'fullname',
+        'password',
         'email',
+        'fullname',
         'role',
-        'password'
     ];
 
     // Các cột nên ẩn khi xuất dữ liệu ra (để bảo mật)
