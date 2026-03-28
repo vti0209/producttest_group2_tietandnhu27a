@@ -12,7 +12,7 @@
 
         <div class="footer-section contact-info">
             <h3>👥 Nhóm 2 - Dự án Laravel</h3>
-            <p>📍 Trường Cao đẳng Công nghệ Đà Nẵng</p>
+            <p>📍 PNV27A</p>
             <p>📞 Hotline: +84 123 456 789</p>
             <p>📧 Email: group2.vti@student.com</p>
         </div>
@@ -23,7 +23,7 @@
         <p>Built with ❤️ using Laravel, HTML, CSS & JavaScript</p>
         <p>
             <a href="#">GitHub</a> |
-            <a href="#">Tài liệu dự án</a>
+            <a href="#">Document</a>
         </p>
     </div>
 </footer>
