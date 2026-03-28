@@ -1,7 +1,13 @@
 <?php
-// Sanpham routes
+/// Web Routes
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () { return view('welcome'); }); // Trang chủ
+
+// Sanpham routes
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
@@ -15,12 +21,10 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
 
 
 // User routes
-use App\Http\Controllers\UserController;
 Route::resource('users', UserController::class); // Tạo tất cả route cần thiết cho UserController (index, create, store, show, edit, update, destroy)
 
 
 // Auth routes
-use App\Http\Controllers\AuthController;
 // Guest: Chỉ khách mới vào được
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

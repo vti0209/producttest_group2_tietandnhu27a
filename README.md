@@ -1,58 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Product & User Management System (Laravel MVC)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Team Members
+Hồ Văn Tiết - Developer  
 
-## About Laravel
+Hồ Thị Như - Developer  
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Introduction
+Dự án này là một hệ thống quản lý sản phẩm và người dùng được xây dựng trên mô hình MVC (Model-View-Controller) sử dụng Framework Laravel. Hệ thống cho phép quản trị viên vận hành các thao tác nghiệp vụ cơ bản, tối ưu hóa quy trình quản lý kho hàng và thông tin nhân sự.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Product Management
+CRUD Operations: Thêm mới, xem danh sách, cập nhật và xóa sản phẩm.  
+Smart Filter: Tìm kiếm sản phẩm theo tên.  
+Category Filtering: Lọc sản phẩm theo danh mục cụ thể.  
+Price Range: Bộ lọc sản phẩm theo khoảng giá.  
+Stock Tracking: Quản lý số lượng tồn kho.  
 
-## Learning Laravel
+### User & Auth System
+Authentication: Đăng ký tài khoản mới và Đăng nhập hệ thống bảo mật.  
+Role-based: Phân quyền người dùng (Admin/User).  
+Profile Management: Xem và chỉnh sửa thông tin người dùng, cập nhật mật khẩu.  
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Technologies Used
+Backend: PHP (Laravel Framework)  
+Database: MySQL  
+Frontend: Blade Template Engine, CSS (Custom Clean UI), JavaScript  
+Architecture: MVC (Model - View - Controller)  
+Tools: Composer
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Project Structure
+Dự án tuân thủ nghiêm ngặt cấu trúc thư mục của Laravel:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```
+app/
+ ├── Models/           # Định nghĩa cấu trúc dữ liệu (Product, User, Category)
+ ├── Http/
+ │    └── Controllers/ # Xử lý logic nghiệp vụ (ProductController, AuthController)
+resources/
+ ├── views/            # Giao diện người dùng (Blade Templates)
+ └── css/              # Custom Stylesheet (Clean UI)
+routes/
+ └── web.php           # Định nghĩa các tuyến đường (Routes) của ứng dụng
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Installation Guide
 
-## Contributing
+1. Clone repository:
+```
+git clone https://github.com/vti0209/producttest_group2_tietandnhu27a.git
+cd producttest_group2_tietandnhu27a
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. Install dependencies:
+```
+composer install
+npm install && npm run build
+```
 
-## Code of Conduct
+3. Setup environment:
+```
+cp .env.example .env
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. Configure database:
+Mở file .env và cập nhật thông số kết nối Database:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_db_name
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Security Vulnerabilities
+5. Run Migrations:
+```
+php artisan migrate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6. Start Server:
+```
+php artisan serve
+```
 
-## License
+Truy cập: http://127.0.0.1:8000
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Database Schema
+
+products table  
+id: Primary Key  
+name: Tên sản phẩm  
+price: Giá bán  
+category_id: Khóa ngoại liên kết danh mục  
+stock: Số lượng tồn kho  
+description: Mô tả chi tiết  
+
+users table  
+id: Primary Key  
+username: Tên đăng nhập  
+fullname: Họ và tên  
+email: Địa chỉ email  
+password: Mật khẩu (Hashed)  
+role: Quyền hạn (admin/user)  
+
+## Project Objective
+Dự án được thực hiện nhằm mục đích thực hành và áp dụng các kiến thức chuyên sâu về:
+- Luồng dữ liệu trong mô hình MVC  
+- Kỹ năng lập trình Backend với Laravel  
+
+## Notes
+Dự án này phục vụ mục đích học tập và kiểm tra giữa kỳ.   
+
+© 2026 - Team Tiet & Nhu
