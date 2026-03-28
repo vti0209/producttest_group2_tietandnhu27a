@@ -1,26 +1,28 @@
 @extends('layouts.master')
 
+@section('title', 'Sửa sản phẩm')
+
 @section('content')
-<div class="container">
+<div class="container form-container">
     <h1>Sửa sản phẩm: {{ $product->name }}</h1>
 
-    <form action="{{ route('products.update', $product->id) }}" method="POST">
+    <form action="{{ route('products.update', $product->id) }}" method="POST" class="crud-form">
         @csrf
         @method('PUT') {{-- Bắt buộc để gửi phương thức UPDATE --}}
 
-        <div style="margin-bottom:10px;">
-            <label>Tên sản phẩm</label><br>
-            <input type="text" name="name" value="{{ $product->name }}" required style="width:100%;">
+        <div class="form-group">
+            <label>Tên sản phẩm</label>
+            <input type="text" name="name" value="{{ $product->name }}" required class="input-full">
         </div>
 
-        <div style="margin-bottom:10px;">
-            <label>Giá</label><br>
-            <input type="number" name="price" value="{{ $product->price }}" required style="width:100%;">
+        <div class="form-group">
+            <label>Giá</label>
+            <input type="number" name="price" value="{{ $product->price }}" required class="input-full">
         </div>
 
-        <div style="margin-bottom:10px;">
-            <label>Loại</label><br>
-            <select name="category_id" style="width:100%;">
+        <div class="form-group">
+            <label>Loại</label>
+            <select name="category_id" class="input-full">
                 @foreach($categories as $cat)
                     <option value="{{ $cat->id }}" {{ $product->category_id == $cat->id ? 'selected' : '' }}>
                         {{ $cat->name }}
@@ -29,13 +31,15 @@
             </select>
         </div>
 
-        <div style="margin-bottom:10px;">
-            <label>Tồn kho</label><br>
-            <input type="number" name="stock" value="{{ $product->stock }}" required style="width:100%;">
+        <div class="form-group">
+            <label>Tồn kho</label>
+            <input type="number" name="stock" value="{{ $product->stock }}" required class="input-full">
         </div>
 
-        <button type="submit" style="background:blue; color:white; padding:10px;">Cập nhật</button>
-        <a href="{{ route('products.index') }}">Hủy</a>
+        <div class="form-actions">
+            <button type="submit" class="btn-update">Cập nhật</button>
+            <a href="{{ route('products.index') }}" class="btn-cancel">Hủy</a>
+        </div>
     </form>
 </div>
 @endsection

@@ -10,6 +10,10 @@ Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('pro
 // Route xử lý cập nhật (dùng PUT hoặc PATCH)
 Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
 
+// Route xem chi tiết sản phẩm
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+
+
 // User routes
 use App\Http\Controllers\UserController;
 Route::resource('users', UserController::class); // Tạo tất cả route cần thiết cho UserController (index, create, store, show, edit, update, destroy)

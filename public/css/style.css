@@ -1,58 +1,77 @@
-/* public/css/style.css */
+/* --- Style cho Layout Master --- */
 
-/* Reset cơ bản */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+/* Class container dùng chung cho các trang */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Kiểu dáng Header */
-.main-header {
-    background-color: #f8f9fa; /* Màu nền nhẹ */
-    border-bottom: 1px solid #e0e0e0;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between; /* Logo bên trái, Auth bên phải */
-    align-items: center; /* Căn giữa theo chiều dọc */
+/* Class điều khiển vùng nội dung chính */
+.main-content {
+    min-height: 80vh;
+    padding: 20px;
+    box-sizing: border-box; /* Đảm bảo padding không làm tràn khung */
 }
 
-/* Kiểu dáng Logo */
-.header-logo img {
-    height: 40px; /* Chiều cao logo */
-    width: auto;
-    vertical-align: middle;
+/* Đảm bảo trang web không bị dính sát mép trên thiết bị nhỏ */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 10px;
+    }
 }
 
-/* Kiểu dáng vùng Auth (Login/Register/User info) */
+/* --- Header Auth Styles --- */
+
 .header-auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 14px;
-    color: #333;
 }
 
-/* Kiểu dáng link Login/Register/Logout */
-.header-auth a {
-    color: #007bff; /* Màu xanh link chuẩn */
+.logout-form {
+    display: inline;
+}
+
+/* Thay thế hoàn toàn style cũ của nút Logout */
+.btn-logout {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+.btn-logout:hover {
+    color: #0056b3;
     text-decoration: none;
-    margin-left: 10px;
 }
 
-.header-auth a:hover {
+.auth-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.auth-link:hover {
     text-decoration: underline;
 }
 
-/* Kiểu dáng tên user */
 .user-name {
-    font-weight: bold;
+    font-weight: 600;
+    color: #333;
 }
 
-
-/* public/css/style.css */
+/* --- Footer Styles --- */
 
 .main-footer {
-    background-color: #1a1a1a; /* Màu tối như trong ảnh */
+    background-color: #1a1a1a; /* Màu tối chuyên nghiệp */
     color: #ffffff;
     padding: 40px 20px 20px;
     margin-top: 50px;
+    font-family: inherit;
 }
 
 .footer-content {
@@ -61,34 +80,44 @@ body {
     flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
+    gap: 30px;
 }
 
 .footer-section {
     margin-bottom: 20px;
+    min-width: 250px;
 }
 
 .footer-section h3 {
     color: #ffffff;
     font-size: 18px;
     margin-bottom: 15px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 8px;
+    display: inline-block;
 }
 
 .social-icons a {
     color: #ffffff;
-    font-size: 24px;
+    font-size: 14px;
     margin-right: 15px;
     text-decoration: none;
     opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
 .social-icons a:hover {
     opacity: 1;
+    color: #ff4d4d; /* Màu nhấn khi hover */
 }
 
 .contact-info p {
-    margin: 8px 0;
+    margin: 10px 0;
     font-size: 14px;
     color: #cccccc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .footer-bottom {
@@ -98,9 +127,609 @@ body {
     padding-top: 20px;
     font-size: 13px;
     color: #888;
+    line-height: 1.6;
+}
+
+.footer-bottom strong {
+    color: #fff;
 }
 
 .footer-bottom a {
     color: #ff4d4d;
     text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+
+/* --- Product List Styles --- */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.input-control, .select-control {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+}
+
+.btn-submit-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-reset {
+    margin-left: 10px;
+    text-decoration: none;
+    color: gray;
+    font-size: 13px;
+}
+
+.add-product-wrapper {
+    margin: 15px 0;
+}
+
+.btn-add-text {
+    color: #6f42c1; /* Purple */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Table Styles */
+.table-list {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: white;
+}
+
+.table-list th {
+    background-color: #f2f2f2;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table-list td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.product-name-link {
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.product-name-link:hover {
+    color: #007bff;
+}
+
+.btn-edit {
+    color: blue;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.btn-delete-link {
+    color: red;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.btn-link-gray {
+    color: #666;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    padding: 5px 15px;
+    border-radius: 4px;
+}
+
+/* --- Detail Product Styles --- */
+
+.detail-container {
+    max-width: 600px;
+    margin-top: 30px;
+}
+
+.detail-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.detail-header {
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.detail-body {
+    margin-top: 20px;
+    line-height: 2;
+}
+
+.category-badge {
+    background: #e9ecef;
+    padding: 3px 10px;
+    border-radius: 15px;
+    color: #495057;
+}
+
+.price-highlight {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.detail-divider {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.detail-footer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: #6610f2; /* Indigo */
+}
+
+.btn-back:hover {
+    text-decoration: underline;
+}
+
+.v-divider {
+    color: #ccc;
+}
+
+.btn-edit-text {
+    text-decoration: none;
+    color: blue;
+}
+
+.btn-edit-text:hover {
+    text-decoration: underline;
+}
+
+/* --- CRUD Form Styles (Dùng cho cả Create/Edit) --- */
+
+.form-container {
+    max-width: 500px; /* Bóp nhỏ lại cho đẹp */
+    margin-top: 20px;
+}
+
+.crud-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.input-full {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Quan trọng để width 100% không bị tràn */
+}
+
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-update {
+    background: blue;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-update:hover {
+    background: #0000cc;
+}
+
+.btn-cancel {
+    text-decoration: none;
+    color: #666;
+}
+
+.btn-cancel:hover {
+    text-decoration: underline;
+}
+
+/* --- Bổ sung cho CRUD Form --- */
+
+.main-form-margin {
+    margin-top: 20px;
+}
+
+.btn-back-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+}
+
+.btn-back-link:hover {
+    text-decoration: underline;
+    color: #333;
+}
+
+/* Nút lưu màu tím theo code cũ của bạn nhưng đẹp hơn */
+.btn-save {
+    background-color: purple;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.btn-save:hover {
+    background-color: #6a0dad; /* Màu tím đậm hơn khi hover */
+}
+
+/* Đảm bảo form-actions căn chỉnh nút hợp lý */
+.form-actions {
+    margin-top: 25px;
+}
+
+/* --- Bổ sung cho Form Create User --- */
+
+/* Tái sử dụng form-container và form-group từ phần trước */
+
+.btn-save-user {
+    background-color: green;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.btn-save-user:hover {
+    background-color: #006400; /* Darkgreen */
+}
+
+/* Đảm bảo các input-full trong User Form nhìn đồng bộ */
+.input-full::placeholder {
+    color: #bbb;
+    font-size: 13px;
+}
+
+/* Khoảng cách cho form-actions của User */
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* --- Bổ sung cho Form Edit User --- */
+
+.btn-update-user {
+    background-color: blue;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.btn-update-user:hover {
+    background-color: #0000cc;
+}
+
+.form-note {
+    display: block;
+    color: #888;
+    font-size: 12px;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Đảm bảo form-actions của User Edit cũng đẹp như các trang khác */
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+/* --- User Management Styles --- */
+
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-add-user {
+    background: #27ae60;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-add-user:hover {
+    background: #219150;
+}
+
+/* Badge Roles */
+.badge {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.badge-admin {
+    background: #f1c40f; /* Vàng cho Admin */
+    color: #000;
+}
+
+.badge-user {
+    background: #eee; /* Xám nhạt cho User thường */
+    color: #333;
+}
+
+/* Tái sử dụng hoặc bổ sung cho Table */
+.table-list {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table-list th, .table-list td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.table-list th {
+    background-color: #f2f2f2;
+}
+
+.action-buttons a {
+    text-decoration: none;
+}
+
+.btn-delete-link {
+    color: red;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0;
+}
+/* --- Authentication Styles (Login/Register) --- */
+
+.auth-card {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.auth-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Thông báo Alert */
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+/* Form Elements */
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #0056b3;
+}
+
+.auth-footer {
+    margin-top: 20px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.link-register {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link-register:hover {
+    text-decoration: underline;
+}
+/* --- Register Specific Styles --- */
+
+.btn-register {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745; /* Màu xanh lá chuẩn */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn-register:hover {
+    background-color: #218838;
+}
+
+.link-login {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link-login:hover {
+    text-decoration: underline;
+}
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    text-align: center;
+}
+
+.welcome-box {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+}
+
+.welcome-box h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.success-msg {
+    color: #27ae60;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.divider {
+    margin: 25px 0;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-main {
+    background: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-outline {
+    border: 2px solid #007bff;
+    color: #007bff;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
 }

@@ -98,4 +98,11 @@ public function index(Request $request)
 
             return redirect()->route('products.index')->with('success', 'Cập nhật sản phẩm thành công!');
         }
+        public function show($id)
+            {
+                // Lấy sản phẩm kèm theo thông tin Category (Eager Loading)
+                $product = Product::with('category')->findOrFail($id);
+
+                return view('products.detail', compact('product'));
+            }
 }

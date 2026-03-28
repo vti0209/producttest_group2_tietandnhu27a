@@ -4,15 +4,15 @@
 
 @section('content')
 <div class="container">
-    <div class="header-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <div class="header-actions">
         <h1>👥 Quản lý User</h1>
-        <a href="{{ route('users.create') }}" class="btn-add" style="background: #27ae60; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">+ Thêm User</a>
+        <a href="{{ route('users.create') }}" class="btn-add-user">+ Thêm User</a>
     </div>
 
-    <table border="1" width="100%" style="border-collapse: collapse; text-align: left;">
+    <table class="table-list">
         <thead>
-            <tr style="background-color: #f2f2f2;">
-                <th style="padding: 10px;">ID</th>
+            <tr>
+                <th>ID</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Fullname</th>
@@ -24,21 +24,22 @@
         <tbody>
             @foreach($users as $user)
             <tr>
-                <td style="padding: 10px;">{{ $user->id }}</td>
+                <td>{{ $user->id }}</td>
                 <td><strong>{{ $user->username }}</strong></td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->fullname }}</td>
                 <td>
-                    <span class="badge {{ $user->role }}" style="padding: 3px 8px; border-radius: 4px; background: #eee;">
+                    <span class="badge badge-{{ $user->role }}">
                         {{ $user->role }}
                     </span>
                 </td>
                 <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
-                <td>
-                    <a href="{{ route('users.edit', $user->id) }}" style="color: blue;">Sửa</a> |
-                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                <td class="action-buttons">
+                    <a href="{{ route('users.edit', $user->id) }}" class="btn-edit">Sửa</a> |
+                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline-form">
                         @csrf @method('DELETE')
-                        <button type="submit" style="color: red; background: none; border: none; cursor: pointer; text-decoration: underline;" onclick="return confirm('Xác nhận xóa người dùng này?')">Xóa</button>
+                        <button type="submit" class="btn-delete-link"
+                                onclick="return confirm('Xác nhận xóa người dùng này?')">Xóa</button>
                     </form>
                 </td>
             </tr>

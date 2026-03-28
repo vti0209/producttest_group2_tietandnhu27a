@@ -17,7 +17,7 @@
 
     @include('layouts.header')
 
-    <main class="container" style="min-height: 80vh; padding: 20px;">
+    <main class="container main-content">
         @yield('content')
     </main>
 
