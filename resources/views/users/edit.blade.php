@@ -11,7 +11,7 @@
         @method('PUT')
 
         <div class="form-group">
-            <label>Tên đăng nhập (Username):</label>
+            <label>Tên đăng nhập:</label>
             <input type="text" name="username" value="{{ $user->username }}" class="input-full" required>
         </div>
 
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            <label>Quyền hạn (Role):</label>
+            <label>Role:</label>
             <select name="role" class="input-full">
                 <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
                 <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>

@@ -5,7 +5,7 @@
 @section('content')
 <div class="container form-container">
     <h1>Thêm sản phẩm mới</h1>
-    <a href="{{ route('products.index') }}" class="btn-back-link">← Quay lại danh sách</a>
+    <a href="{{ route('products.index') }}" class="btn-back-link">Quay lại</a>
 
     <form action="{{ route('products.store') }}" method="POST" class="crud-form main-form-margin">
         @csrf {{-- Bắt buộc phải có để bảo mật --}}

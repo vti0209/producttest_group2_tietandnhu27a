@@ -8,10 +8,36 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index() {
-        $users = User::orderBy('id', 'desc')->get();
-        return view('users.index', compact('users'));
-    }
+   public function index(Request $request)
+        {
+            // 1. Khởi tạo query
+            $query = User::query();
+
+            // 2. Tìm theo tên hoặc email (nếu có)
+            if ($request->filled('search')) {
+                $search = $request->search;
+                $query->where(function($q) use ($search) {
+                    $q->where('fullname', 'like', "%$search%")
+                    ->orWhere('username', 'like', "%$search%")
+                    ->orWhere('email', 'like', "%$search%");
+                });
+            }
+
+            // 3. Lọc theo ngày tạo (Từ ngày)
+            if ($request->filled('start_date')) {
+                $query->whereDate('created_at', '>=', $request->start_date);
+            }
+
+            // 4. Lọc theo ngày tạo (Đến ngày)
+            if ($request->filled('end_date')) {
+                $query->whereDate('created_at', '<=', $request->end_date);
+            }
+
+            // 5. Thực hiện phân trang và giữ lại các giá trị lọc trên URL
+            $users = $query->orderBy('id', 'desc')->paginate(5);
+
+            return view('users.index', compact('users'));
+        }
 
     public function create() {
         return view('users.create');

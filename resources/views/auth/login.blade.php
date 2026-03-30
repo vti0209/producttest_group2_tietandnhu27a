@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="auth-card">
-    <h2 class="auth-title">Đăng nhập hệ thống</h2>
+    <h2 class="auth-title">Đăng nhập</h2>
 
     {{-- Hiển thị thông báo thành công từ trang Register chuyển sang --}}
     @if(session('success'))

@@ -6,11 +6,11 @@
 <div class="container detail-container">
     <div class="detail-card">
         <h1 class="detail-header">
-            📦 {{ $product->name }}
+             {{ $product->name }}
         </h1>
 
         <div class="detail-body">
-            <p><strong>Mã sản phẩm:</strong> #{{ $product->id }}</p>
+            <p><strong>Mã sản phẩm:</strong> {{ $product->id }}</p>
             <p><strong>Loại sản phẩm:</strong>
                 <span class="category-badge">
                     {{ $product->category->name ?? 'N/A' }}
@@ -29,11 +29,11 @@
 
         <div class="detail-footer">
             <a href="{{ route('products.index') }}" class="btn-back">
-                ← Quay lại danh sách
+                Quay lại
             </a>
             <span class="v-divider">|</span>
             <a href="{{ route('products.edit', $product->id) }}" class="btn-edit-text">
-                Chỉnh sửa thông tin
+                Chỉnh sửa
             </a>
         </div>
     </div>

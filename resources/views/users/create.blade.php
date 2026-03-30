@@ -10,7 +10,7 @@
         @csrf
 
         <div class="form-group">
-            <label>Tên đăng nhập (Username):</label>
+            <label>Tên đăng nhập:</label>
             <input type="text" name="username" placeholder="Nhập username" required class="input-full">
         </div>
 
@@ -30,7 +30,7 @@
         </div>
 
         <div class="form-group">
-            <label>Quyền hạn (Role):</label>
+            <label>Role:</label>
             <select name="role" class="input-full">
                 <option value="admin">Admin</option>
                 <option value="user" selected>User</option>
@@ -38,7 +38,7 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn-save-user">Lưu User</button>
+            <button type="submit" class="btn-save-user">Lưu</button>
             <a href="{{ route('users.index') }}" class="btn-cancel">Hủy</a>
         </div>
     </form>

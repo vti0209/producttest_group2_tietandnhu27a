@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="auth-card">
-    <h2 class="auth-title">Đăng ký hệ thống</h2>
+    <h2 class="auth-title">Đăng ký</h2>
 
     {{-- Hiển thị lỗi nếu đăng ký thất bại --}}
     @if(session('error'))
@@ -17,12 +17,12 @@
         @csrf
 
         <div class="form-group">
-            <label class="form-label">Tên đăng nhập (Username):</label>
+            <label class="form-label">Tên đăng nhập:</label>
             <input type="text" name="username" required class="input-full" value="{{ old('username') }}">
         </div>
 
         <div class="form-group">
-            <label class="form-label">Họ và tên (Fullname):</label>
+            <label class="form-label">Họ và tên:</label>
             <input type="text" name="fullname" required class="input-full" value="{{ old('fullname') }}">
         </div>
 

@@ -41,7 +41,7 @@ public function index(Request $request)
         }
 
         // 6. Thực hiện lấy dữ liệu
-        $products = $query->with('category')->get();
+        $products = $query->with('category')->paginate(5);
         $categories = Category::all();
 
         // 7. Trả về view

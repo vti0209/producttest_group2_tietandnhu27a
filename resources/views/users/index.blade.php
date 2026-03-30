@@ -5,10 +5,24 @@
 @section('content')
 <div class="container">
     <div class="header-actions">
-        <h1>Quản lý User</h1>
-        <a href="{{ route('users.create') }}" class="btn-add-user">+ Thêm User</a>
+        <h1>Users</h1>
+        <a href="{{ route('products.index') }}" class="btn-link-gray">Products</a>
     </div>
+    <form action="{{ route('users.index') }}" method="GET" class="filter-form mb-3">
+        <input type="text" name="search" class="input-control" placeholder="Tìm tên, user, email..." value="{{ request('search') }}">
 
+        <label>Từ ngày:</label>
+        <input type="date" name="start_date" class="input-control" value="{{ request('start_date') }}">
+
+        <label>Đến ngày:</label>
+        <input type="date" name="end_date" class="input-control" value="{{ request('end_date') }}">
+
+        <button type="submit" class="btn-submit-primary">Lọc</button>
+        <a href="{{ route('users.index') }}" class="btn-reset">Xóa lọc</a>
+    </form>
+    <div class="add-user-wrapper">
+        <a href="{{ route('users.create') }}" class="btn-add-text">+ Thêm user</a>
+    </div>
     <table class="table-list">
         <thead>
             <tr>
@@ -46,5 +60,8 @@
             @endforeach
         </tbody>
     </table>
+    <div class="d-flex justify-content-center mt-4">
+        {{ $users->links() }}
+    </div>
 </div>
 @endsection
