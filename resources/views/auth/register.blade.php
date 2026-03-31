@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <form action="{{ route('register') }}" method="POST">
+    <form action="{{ route('register') }}" method="POST"> //Gửi dữ liệu bằng phương thức POST đến route register
         @csrf
 
         <div class="form-group">

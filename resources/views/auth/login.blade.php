@@ -28,7 +28,7 @@
             <input type="text" name="username" required
                    class="input-full"
                    placeholder="Nhập username..."
-                   value="{{ old('username') }}">
+                   value="{{ old('username') }}"> //Giữ lại tên đăng nhập người dùng đã nhập nếu có lỗi xảy ra, giúp người dùng không phải nhập lại từ đầu.
         </div>
 
         <div class="form-group">

@@ -14,6 +14,7 @@ class User extends Authenticatable
         'email',
         'fullname',
         'role',
+        'name',
     ];
 
     // Các cột nên ẩn khi xuất dữ liệu ra (để bảo mật)
